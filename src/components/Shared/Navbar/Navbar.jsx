@@ -53,7 +53,7 @@ const Navbar = () => {
             <button className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 rounded-md text-sm font-medium btn btn-outline btn-sm">
               Login
             </button>
-            <div className="ml-4">
+            <div className="ml-2">
               <img
                 className="h-8 w-8 rounded-full"
                 src="/logo-light.png"
@@ -75,8 +75,8 @@ const Navbar = () => {
             <ActiveLInk to="/add-toy" customClass="block">Add Toy</ActiveLInk>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-400">
-            <div className="flex items-center px-5">
-              <div className="ml-3">
+            <div className="flex items-center">
+              <div>
                 <img
                   className="h-8 w-8 rounded-full"
                   src="/logo-light.png"
