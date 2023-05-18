@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "/logo-dark.png";
 import { BiMenuAltRight, BiWindowClose } from "react-icons/bi";
+import ActiveLInk from "./ActiveLInk";
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -39,42 +40,17 @@ const Navbar = () => {
           {/* Middle */}
           <div className="hidden sm:flex flex-1 justify-center">
             <div className="space-x-4">
-              <Link
-                to="/"
-                className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Home
-              </Link>
-              <Link
-                to="/blogs"
-                className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Blogs
-              </Link>
-              <Link
-                to="/all-toys"
-                className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                All Toys
-              </Link>
-              <Link
-                to="/my-toys"
-                className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                My Toys
-              </Link>
-              <Link
-                to="/add-toy"
-                className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Add Toy
-              </Link>
+              <ActiveLInk to="/">Home</ActiveLInk>
+              <ActiveLInk to="/blogs">Blogs</ActiveLInk>
+              <ActiveLInk to="/all-toys">All Toys</ActiveLInk>
+              <ActiveLInk to="/my-toys">My Toys</ActiveLInk>
+              <ActiveLInk to="/add-toy">Add Toy</ActiveLInk>
             </div>
           </div>
 
           {/* Right side */}
           <div className="hidden sm:flex items-center">
-            <button className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+            <button className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 rounded-md text-sm font-medium btn btn-outline btn-sm">
               Login
             </button>
             <div className="ml-4">
@@ -92,43 +68,18 @@ const Navbar = () => {
           className={`${isMobileMenuOpen ? "block" : "hidden"} sm:hidden mt-2`}
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link
-              to="/"
-              className="text-gray-700 hover:bg-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >
-              Home
-            </Link>
-            <Link
-              to="/blogs"
-              className="text-gray-700 hover:bg-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >
-              Blogs
-            </Link>
-            <Link
-              to="/all-toys"
-              className="text-gray-700 hover:bg-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >
-              All Toys
-            </Link>
-            <Link
-              to="/my-toys"
-              className="text-gray-700 hover:bg-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >
-              My Toys
-            </Link>
-            <Link
-              to="/add-toy"
-              className="text-gray-700 hover:bg-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >
-              Add Toy
-            </Link>
+            <ActiveLInk to="/" customClass="block">Home</ActiveLInk>
+            <ActiveLInk to="/blogs" customClass="block">Blogs</ActiveLInk>
+            <ActiveLInk to="/all-toys" customClass="block">All Toys</ActiveLInk>
+            <ActiveLInk to="/my-toys" customClass="block">My Toys</ActiveLInk>
+            <ActiveLInk to="/add-toy" customClass="block">Add Toy</ActiveLInk>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-400">
             <div className="flex items-center px-5">
               <div className="ml-3">
                 <img
-                  className="h-8 w-8"
-                  src="/path/to/profile.png"
+                  className="h-8 w-8 rounded-full"
+                  src="/logo-light.png"
                   alt="Profile"
                 />
               </div>
