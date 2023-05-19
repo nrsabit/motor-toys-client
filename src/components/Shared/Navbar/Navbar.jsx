@@ -50,9 +50,11 @@ const Navbar = () => {
 
           {/* Right side */}
           <div className="hidden sm:flex items-center">
-            <button className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 rounded-md text-sm font-medium btn btn-outline btn-sm">
-              Login
-            </button>
+            <Link to="/login">
+              <button className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 rounded-md text-sm font-medium btn btn-outline btn-sm">
+                Login
+              </button>
+            </Link>
             <div className="ml-2">
               <img
                 className="h-8 w-8 rounded-full"
@@ -68,11 +70,21 @@ const Navbar = () => {
           className={`${isMobileMenuOpen ? "block" : "hidden"} sm:hidden mt-2`}
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <ActiveLInk to="/" customClass="block">Home</ActiveLInk>
-            <ActiveLInk to="/blogs" customClass="block">Blogs</ActiveLInk>
-            <ActiveLInk to="/all-toys" customClass="block">All Toys</ActiveLInk>
-            <ActiveLInk to="/my-toys" customClass="block">My Toys</ActiveLInk>
-            <ActiveLInk to="/add-toy" customClass="block">Add Toy</ActiveLInk>
+            <ActiveLInk to="/" customClass="block">
+              Home
+            </ActiveLInk>
+            <ActiveLInk to="/blogs" customClass="block">
+              Blogs
+            </ActiveLInk>
+            <ActiveLInk to="/all-toys" customClass="block">
+              All Toys
+            </ActiveLInk>
+            <ActiveLInk to="/my-toys" customClass="block">
+              My Toys
+            </ActiveLInk>
+            <ActiveLInk to="/add-toy" customClass="block">
+              Add Toy
+            </ActiveLInk>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-400">
             <div className="flex items-center">
@@ -84,9 +96,11 @@ const Navbar = () => {
                 />
               </div>
               <div className="ml-2">
-                <button className="text-gray-700 btn btn-outline hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Login
-                </button>
+                <Link to="/login">
+                  <button className="text-gray-700 btn btn-outline hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                    Login
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
