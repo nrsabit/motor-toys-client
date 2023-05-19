@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "/logo-dark.png";
 import { BiMenuAltRight, BiWindowClose } from "react-icons/bi";
 import ActiveLInk from "./ActiveLInk";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleLogOut = () => {
+    logOut();
   };
 
   return (
@@ -43,19 +49,32 @@ const Navbar = () => {
               <ActiveLInk to="/">Home</ActiveLInk>
               <ActiveLInk to="/blogs">Blogs</ActiveLInk>
               <ActiveLInk to="/all-toys">All Toys</ActiveLInk>
-              <ActiveLInk to="/my-toys">My Toys</ActiveLInk>
-              <ActiveLInk to="/add-toy">Add Toy</ActiveLInk>
+              {user && (
+                <>
+                  <ActiveLInk to="/my-toys">My Toys</ActiveLInk>
+                  <ActiveLInk to="/add-toy">Add Toy</ActiveLInk>
+                </>
+              )}
             </div>
           </div>
 
           {/* Right side */}
           <div className="hidden sm:flex items-center">
-            <Link to="/login">
-              <button className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 rounded-md text-sm font-medium btn btn-outline btn-sm">
-                Login
+            {user ? (
+              <button
+                onClick={handleLogOut}
+                className="text-gray-700 btn btn-outline hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Log Out
               </button>
-            </Link>
-            <div className="ml-2">
+            ) : (
+              <Link to="/login">
+                <button className="text-gray-700 btn btn-outline hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  Login
+                </button>
+              </Link>
+            )}
+            <div className={`ml-2 ${user ? "" : "hidden"}`}>
               <img
                 className="h-8 w-8 rounded-full"
                 src="/logo-light.png"
@@ -79,16 +98,20 @@ const Navbar = () => {
             <ActiveLInk to="/all-toys" customClass="block">
               All Toys
             </ActiveLInk>
-            <ActiveLInk to="/my-toys" customClass="block">
-              My Toys
-            </ActiveLInk>
-            <ActiveLInk to="/add-toy" customClass="block">
-              Add Toy
-            </ActiveLInk>
+            {user && (
+              <>
+                <ActiveLInk to="/my-toys" customClass="block">
+                  My Toys
+                </ActiveLInk>
+                <ActiveLInk to="/add-toy" customClass="block">
+                  Add Toy
+                </ActiveLInk>
+              </>
+            )}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-400">
             <div className="flex items-center">
-              <div>
+              <div className={`ml-2 ${user ? "" : "hidden"}`}>
                 <img
                   className="h-8 w-8 rounded-full"
                   src="/logo-light.png"
@@ -96,11 +119,20 @@ const Navbar = () => {
                 />
               </div>
               <div className="ml-2">
-                <Link to="/login">
-                  <button className="text-gray-700 btn btn-outline hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                    Login
+                {user ? (
+                  <button
+                    onClick={handleLogOut}
+                    className="text-gray-700 btn btn-outline hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Log Out
                   </button>
-                </Link>
+                ) : (
+                  <Link to="/login">
+                    <button className="text-gray-700 btn btn-outline hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                      Login
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

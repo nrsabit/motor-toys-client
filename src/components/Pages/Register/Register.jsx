@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { signInWithGoogle, signUp, updateUserInfo } = useContext(AuthContext);
+
+const handleSignUp = event => {
+    event.preventDefault()
+    const form = event.target 
+    const name = form.name.value 
+    const photo = form.photo.value 
+    const email = form.email.value 
+    const password = form.password.value 
+
+    signUp(email, password)
+    .then(() => {
+        updateUserInfo(name, photo)
+        Swal.fire('Sign up Completed')
+        form.reset()
+    })
+    .catch((error) => Swal.fire(error.message))
+}
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then(() => {
+        Swal.fire("Logged in Successfully");
+      })
+      .catch((error) => Swal.fire(error.message));
+  };
   return (
     <div className="hero my-14 max-w-7xl mx-auto">
       <div className="w-full md:flex rounded py-14 md:px-20 bg-[#E0F4DB]">
@@ -16,7 +44,7 @@ const Register = () => {
         </div>
         <div className="card flex-shrink-0 md:w-1/3 mx-auto shadow-2xl bg-base-100 ">
           <div className="card-body">
-            <form>
+            <form onSubmit={handleSignUp}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -80,7 +108,10 @@ const Register = () => {
               </Link>
             </p>
             <div className="divider">OR</div>
-            <button className="btn btn-md flex gap-2 border-none hover:text-white bg-[#E0F4DB] text-gray-700 outline-0">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-md flex gap-2 border-none hover:text-white bg-[#E0F4DB] text-gray-700 outline-0"
+            >
               Sign up with<BsGoogle></BsGoogle>
             </button>
           </div>
