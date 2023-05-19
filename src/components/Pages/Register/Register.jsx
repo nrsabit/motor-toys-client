@@ -18,18 +18,50 @@ const handleSignUp = event => {
     signUp(email, password)
     .then(() => {
         updateUserInfo(name, photo)
-        Swal.fire('Sign up Completed')
+        Swal.fire({
+          title: 'Success',
+          text: 'Sign Up Completed',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        });
         form.reset()
     })
-    .catch((error) => Swal.fire(error.message))
+    .catch((error) => {
+      if(password < 6){
+        Swal.fire({
+          title: 'Error..',
+          text: 'Please provide a password with atleast 6 characters',
+          icon: 'error',
+          confirmButtonText: 'Try Again'
+        });
+      }
+      Swal.fire({
+        title: 'Error..',
+        text: 'Something is wrong, Please provide desired details',
+        icon: 'error',
+        confirmButtonText: 'Try Again'
+      });
+    })
 }
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then(() => {
-        Swal.fire("Logged in Successfully");
+        Swal.fire({
+          title: 'Success',
+          text: 'Logged in Successfully',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        });
       })
-      .catch((error) => Swal.fire(error.message));
+      .catch((error) => {
+        Swal.fire({
+          title: 'Error..',
+          text: 'Something is wrong, Please Try Again',
+          icon: 'error',
+          confirmButtonText: 'Try Again'
+        });
+      });
   };
   return (
     <div className="hero my-14 max-w-7xl mx-auto">

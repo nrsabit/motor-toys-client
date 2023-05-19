@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const { signInWithGoogle, logInWithEmail } = useContext(AuthContext);
-  const [error, setError] = useState(null);
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,20 +13,42 @@ const Login = () => {
     const password = form.password.value;
     logInWithEmail(email, password)
       .then(() => {
-        setError(null);
-        Swal.fire("Logged in Successfully");
+        Swal.fire({
+          title: 'Success',
+          text: 'Logged in Successfully',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        });
         form.reset()
       })
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        Swal.fire({
+          title: 'Error..',
+          text: 'Wrong Credentials',
+          icon: 'error',
+          confirmButtonText: 'Try Again'
+        });
+      });
   };
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
     .then(() => {
-      setError(null);
-      Swal.fire("Logged in Successfully")
+      Swal.fire({
+        title: 'Success',
+        text: 'Successfully logged in',
+        icon: 'success',
+        confirmButtonText: 'Cool'
+      });
     })
-    .catch((error) => setError(error.message))
+    .catch((error) => {
+      Swal.fire({
+        title: 'Error..',
+        text: 'Something is wrong, Please try again',
+        icon: 'error',
+        confirmButtonText: 'Try Again'
+      });
+    })
     }
 
 
