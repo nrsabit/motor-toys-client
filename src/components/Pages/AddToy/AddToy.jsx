@@ -2,29 +2,30 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 const AddToy = () => {
+  document.title = 'MotorToys | Add a Toy'
   const { user } = useContext(AuthContext);
   const handleAddToy = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
     const seller_name = form.sellerName.value;
-    const seller_mail = form.sellerEmail.value;
+    const seller_email = form.sellerEmail.value;
     const rating = form.rating.value;
     const price = form.price.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
     const category = form.category.value;
-    const photo = form.photo.value;
+    const picture = form.photo.value;
     const newToy = {
       name,
-      seller_mail,
+      seller_email,
       seller_name,
       rating,
       price,
       quantity,
       description,
       category,
-      photo,
+      picture,
     };
     form.reset();
 
