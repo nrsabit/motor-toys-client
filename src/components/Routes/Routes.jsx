@@ -9,6 +9,7 @@ import AddToy from '../Pages/AddToy/AddToy';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import NotFound from '../Pages/NotFound/NotFound';
+import SingleToy from '../Pages/SingleToy/SingleToy';
 
 const router = createBrowserRouter([
     {
@@ -46,7 +47,8 @@ const router = createBrowserRouter([
         },
         {
             path: 'toys/:id',
-
+            element: <SingleToy></SingleToy>,
+            loader: ({params}) => fetch(`https://motor-toys-server.vercel.app/toys/${params.id}`)
         }
       ]
     },

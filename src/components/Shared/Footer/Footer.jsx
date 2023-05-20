@@ -14,7 +14,7 @@ const Footer = () => {
               MotorToys
             </span>
           </div>
-          <div className="mt-4 md:mt-0">
+          <div className="mt-4 md:mt-0 flex justify-center items-center">
             <span className="text-gray-700 font-semibold text-lg">
               The Best Collection of Motor Toys
             </span>

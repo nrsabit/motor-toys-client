@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const AllToys = () => {
-  document.title = 'MotorToys | All Toys'
+  document.title = "MotorToys | All Toys";
+  const {user} = useContext(AuthContext)
+  const location = useLocation();
+  const navigate = useNavigate();
   const toysPerPageOptions = [20, 15, 10, "all"];
   const [sortBy, setSortBy] = useState(null);
   const [search, setSearch] = useState(false);
@@ -28,7 +36,7 @@ const AllToys = () => {
   };
 
   const handleClearSearch = () => {
-    document.getElementById('search-input').value = ''
+    document.getElementById("search-input").value = "";
     fetch(
       `https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}&sort=${sortBy}`
     )
@@ -41,6 +49,7 @@ const AllToys = () => {
   };
 
   useEffect(() => {
+    console.log(location)
     fetch(
       `https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}&sort=${sortBy}`
     )
@@ -178,7 +187,10 @@ const AllToys = () => {
                     {toy.quantity}
                   </td>
                   <td className="px-6 text-center py-4 whitespace-nowrap">
-                    <button className="btn btn-sm text-xs border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
+                    <button 
+                    // onClick={user ? () => navigate(`/toys/${toy._id}`) : () => navigate('/login', {from : location})}
+                    onClick={() => navigate(`/toys/${toy._id}`)}
+                    className="btn btn-sm text-xs border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
                       View Details
                     </button>
                   </td>
