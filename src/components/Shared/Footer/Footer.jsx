@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "/logo-dark.png";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa"
+import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -14,12 +14,10 @@ const Footer = () => {
               MotorToys
             </span>
           </div>
-          <div className="flex flex-wrap items-center justify-center md:justify-end space-x-4 mt-4 md:mt-0">
-            <Link className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/">Home</Link>
-            <Link className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/blogs">Blogs</Link>
-            <Link className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/all-toys">All Toys</Link>
-            <Link className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/my-toys">My Toys</Link>
-            <Link className="text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/add-toy">Add Toy</Link>
+          <div className="mt-4 md:mt-0">
+            <span className="text-gray-700 font-semibold text-lg">
+              The Best Collection of Motor Toys
+            </span>
           </div>
         </div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-8">

@@ -5,6 +5,7 @@ import TabsCategory from './TabsCategory';
 import TopToys from './TopToys';
 
 const Home = () => {
+    document.title = 'MotorToys | Home'
     return (
         <div className='max-w-7xl mx-auto'>
             <Banner></Banner>

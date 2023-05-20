@@ -4,6 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const AllToys = () => {
+  document.title = 'MotorToys | All Toys'
   const toysPerPageOptions = [20, 15, 10, "all"];
   const [sortBy, setSortBy] = useState(null);
   const [search, setSearch] = useState(false);
@@ -27,6 +28,7 @@ const AllToys = () => {
   };
 
   const handleClearSearch = () => {
+    document.getElementById('search-input').value = ''
     fetch(
       `https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}&sort=${sortBy}`
     )
@@ -76,14 +78,14 @@ const AllToys = () => {
         <div className="flex gap-3 justify-center">
           <button
             onClick={() => setSortBy("asc")}
-            className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0"
+            className="btn btn-sm text-xs border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0"
           >
             Sort by Asc
           </button>
 
           <button
             onClick={() => setSortBy("dsc")}
-            className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0"
+            className="btn-sm text-xs btn border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0"
           >
             Sort by Dsc
           </button>
@@ -93,6 +95,7 @@ const AllToys = () => {
             <div className="input-group">
               <input
                 disabled={search}
+                id="search-input"
                 type="text"
                 name="search"
                 placeholder="Search…"
@@ -175,7 +178,7 @@ const AllToys = () => {
                     {toy.quantity}
                   </td>
                   <td className="px-6 text-center py-4 whitespace-nowrap">
-                    <button className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
+                    <button className="btn btn-sm text-xs border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
                       View Details
                     </button>
                   </td>
