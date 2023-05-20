@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-// import { IoCloseSharp } from "react-icons/io";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const AllToys = () => {
   const toysPerPageOptions = [20, 15, 10, "all"];
   const [sortBy, setSortBy] = useState(null);
-  const [inputValue, setInputValue] = useState(null)
   const [search, setSearch] = useState(false);
   const [toysPerPage, setToysPerPage] = useState(20);
   const loadedToys = useLoaderData();
   const [toys, setToys] = useState(loadedToys);
-  let toysBeforeSearch;
 
   const handleToysPerPage = (event) => {
     const value = event.target.value;
@@ -22,21 +19,23 @@ const AllToys = () => {
   const handleToySearch = (event) => {
     event.preventDefault();
     const name = event.target.search.value;
-    const previousToys = [...toys]
-    toysBeforeSearch = previousToys
     setSearch(true);
     const result = toys.filter((toy) =>
       toy.name.toLowerCase().includes(name.toLowerCase())
     );
     setToys(result);
-    event.target.reset()
   };
 
   const handleClearSearch = () => {
-    setToys(toysBeforeSearch)
-    // setInputValue(null)
-    // setSearch(false)
-    console.log(toysBeforeSearch)
+    fetch(
+      `https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}&sort=${sortBy}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setSearch(false);
+        setToysPerPage(toysPerPage);
+        setToys(data);
+      });
   };
 
   useEffect(() => {
@@ -93,11 +92,15 @@ const AllToys = () => {
           <div className="form-control">
             <div className="input-group">
               <input
-              onChange={() => setInputValue(event.target.value)}
+                disabled={search}
                 type="text"
                 name="search"
                 placeholder="Search…"
-                className="input input-bordered"
+                className={`${
+                  search
+                    ? "disabled input input-bordered"
+                    : "input input-bordered"
+                }`}
               />
               {!search ? (
                 <button className="btn btn-square">
@@ -105,7 +108,10 @@ const AllToys = () => {
                 </button>
               ) : (
                 <button className="btn btn-square">
-                  <AiOutlineCloseCircle onClick={handleClearSearch} className="w-6 h-6"></AiOutlineCloseCircle>
+                  <AiOutlineCloseCircle
+                    onClick={handleClearSearch}
+                    className="w-6 h-6"
+                  ></AiOutlineCloseCircle>
                 </button>
               )}
             </div>
