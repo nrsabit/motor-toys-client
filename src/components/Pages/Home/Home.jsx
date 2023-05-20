@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from './Banner';
 import Galary from './Galary';
-import Tabs from './Tabs';
+import TabsCategory from './TabsCategory';
 import TopToys from './TopToys';
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
         <div className='max-w-7xl mx-auto'>
             <Banner></Banner>
             <Galary></Galary>
-            <Tabs></Tabs>
+            <TabsCategory></TabsCategory>
             <TopToys></TopToys>
         </div>
     );

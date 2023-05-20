@@ -11,7 +11,7 @@ const Banner = () => {
     >
       <div className="hero-overlay bg-[#E0F4DB] md:min-h-[500px] bg-opacity-70 p-12 md:p-16 rounded"></div>
       <div className="hero-content text-center">
-        <div className="max-w-md">
+        <div className="max-w-lg">
           <h1 className="mb-5 text-3xl md:text-5xl font-bold text-gray-900">
             Welcome to MotorToys
           </h1>

@@ -45,7 +45,7 @@ const Galary = () => {
   ];
   return (
     <div className="my-16">
-      <div className="max-w-md mx-auto">
+      <div className="max-w-lg mx-auto">
         <h1 className="mb-5 text-3xl md:text-5xl text-center font-bold text-gray-900">
           Some of Our Beautiful Toys
         </h1>
