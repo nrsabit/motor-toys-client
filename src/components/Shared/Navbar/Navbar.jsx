@@ -4,6 +4,7 @@ import logo from "/logo-dark.png";
 import { BiMenuAltRight, BiWindowClose } from "react-icons/bi";
 import ActiveLInk from "./ActiveLInk";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -75,11 +76,15 @@ const Navbar = () => {
               </Link>
             )}
             <div className={`ml-2 ${user ? "" : "hidden"}`}>
-              <img
-                className="h-8 w-8 rounded-full"
-                src="/logo-light.png"
-                alt="Profile"
-              />
+              {user?.photoURL ? (
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={user.photoURL}
+                  alt="Profile"
+                />
+              ) : (
+                <FaUserCircle></FaUserCircle>
+              )}
             </div>
           </div>
         </div>
@@ -112,11 +117,15 @@ const Navbar = () => {
           <div className="pt-4 pb-3 border-t border-gray-400">
             <div className="flex items-center">
               <div className={`ml-2 ${user ? "" : "hidden"}`}>
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="/logo-light.png"
-                  alt="Profile"
-                />
+                {user?.photoURL ? (
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src={user.photoURL}
+                    alt="Profile"
+                  />
+                ) : (
+                  <FaUserCircle></FaUserCircle>
+                )}
               </div>
               <div className="ml-2">
                 {user ? (
