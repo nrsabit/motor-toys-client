@@ -1,23 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+// import { IoCloseSharp } from "react-icons/io";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const AllToys = () => {
   const toysPerPageOptions = [20, 15, 10, "all"];
   const [sortBy, setSortBy] = useState(null);
+  const [inputValue, setInputValue] = useState(null)
+  const [search, setSearch] = useState(false);
   const [toysPerPage, setToysPerPage] = useState(20);
   const loadedToys = useLoaderData();
   const [toys, setToys] = useState(loadedToys);
+  let toysBeforeSearch;
 
   const handleToysPerPage = (event) => {
     const value = event.target.value;
     setToysPerPage(value);
   };
 
+  const handleToySearch = (event) => {
+    event.preventDefault();
+    const name = event.target.search.value;
+    const previousToys = [...toys]
+    toysBeforeSearch = previousToys
+    setSearch(true);
+    const result = toys.filter((toy) =>
+      toy.name.toLowerCase().includes(name.toLowerCase())
+    );
+    setToys(result);
+    event.target.reset()
+  };
+
+  const handleClearSearch = () => {
+    setToys(toysBeforeSearch)
+    // setInputValue(null)
+    // setSearch(false)
+    console.log(toysBeforeSearch)
+  };
+
   useEffect(() => {
-    fetch(`https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}&sort=${sortBy}`)
-    .then(res => res.json())
-    .then(data => setToys(data))
-  }, [sortBy])
+    fetch(
+      `https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}&sort=${sortBy}`
+    )
+      .then((res) => res.json())
+      .then((data) => setToys(data));
+  }, [sortBy]);
 
   useEffect(() => {
     fetch(`https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}`)
@@ -47,14 +75,42 @@ const AllToys = () => {
           </select>
         </div>
         <div className="flex gap-3 justify-center">
-            <button onClick={() => setSortBy('asc')} className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
-              Sort by Asc
-            </button>
+          <button
+            onClick={() => setSortBy("asc")}
+            className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0"
+          >
+            Sort by Asc
+          </button>
 
-            <button onClick={() => setSortBy('dsc')} className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
-              Sort by Dsc
-            </button>
+          <button
+            onClick={() => setSortBy("dsc")}
+            className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0"
+          >
+            Sort by Dsc
+          </button>
         </div>
+        <form onSubmit={handleToySearch}>
+          <div className="form-control">
+            <div className="input-group">
+              <input
+              onChange={() => setInputValue(event.target.value)}
+                type="text"
+                name="search"
+                placeholder="Search…"
+                className="input input-bordered"
+              />
+              {!search ? (
+                <button className="btn btn-square">
+                  <BsSearch></BsSearch>
+                </button>
+              ) : (
+                <button className="btn btn-square">
+                  <AiOutlineCloseCircle onClick={handleClearSearch} className="w-6 h-6"></AiOutlineCloseCircle>
+                </button>
+              )}
+            </div>
+          </div>
+        </form>
       </div>
       <div>
         <table className="min-w-full divide-y divide-gray-200">
@@ -82,42 +138,43 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {toys.map((toy) => (
-              <tr
-                key={toy._id}
-                className={`${
-                  toys.indexOf(toy) % 2 !== 0 ? "bg-[#E0F4DB]" : ""
-                }`}
-              >
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <img
-                    src={toy.picture}
-                    alt={toy.name}
-                    className="h-12 w-12 rounded-full"
-                  />
-                </td>
-                <td className="px-6 text-center font-bold py-4 whitespace-nowrap">
-                  {toy.name}
-                </td>
-                <td className="px-6 text-center py-4 whitespace-nowrap">
-                  {toy.seller ? toy.seller : "N/A"}
-                </td>
-                <td className="px-6 text-center py-4 whitespace-nowrap">
-                  {toy.category}
-                </td>
-                <td className="px-6 text-center py-4 whitespace-nowrap">
-                  ${toy.price}
-                </td>
-                <td className="px-6 text-center py-4 whitespace-nowrap">
-                  {toy.quantity}
-                </td>
-                <td className="px-6 text-center py-4 whitespace-nowrap">
-                  <button className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
-                    View Details
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {toys &&
+              toys.map((toy) => (
+                <tr
+                  key={toy._id}
+                  className={`${
+                    toys.indexOf(toy) % 2 !== 0 ? "bg-[#E0F4DB]" : ""
+                  }`}
+                >
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <img
+                      src={toy.picture}
+                      alt={toy.name}
+                      className="h-12 w-12 rounded-full"
+                    />
+                  </td>
+                  <td className="px-6 text-center font-bold py-4 whitespace-nowrap">
+                    {toy.name}
+                  </td>
+                  <td className="px-6 text-center py-4 whitespace-nowrap">
+                    {toy.seller ? toy.seller : "N/A"}
+                  </td>
+                  <td className="px-6 text-center py-4 whitespace-nowrap">
+                    {toy.category}
+                  </td>
+                  <td className="px-6 text-center py-4 whitespace-nowrap">
+                    ${toy.price}
+                  </td>
+                  <td className="px-6 text-center py-4 whitespace-nowrap">
+                    {toy.quantity}
+                  </td>
+                  <td className="px-6 text-center py-4 whitespace-nowrap">
+                    <button className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
+                      View Details
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
