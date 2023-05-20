@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const AllToys = () => {
   const toysPerPageOptions = [20, 15, 10, "all"];
+  const [sortBy, setSortBy] = useState(null);
   const [toysPerPage, setToysPerPage] = useState(20);
   const loadedToys = useLoaderData();
   const [toys, setToys] = useState(loadedToys);
@@ -11,6 +12,12 @@ const AllToys = () => {
     const value = event.target.value;
     setToysPerPage(value);
   };
+
+  useEffect(() => {
+    fetch(`https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}&sort=${sortBy}`)
+    .then(res => res.json())
+    .then(data => setToys(data))
+  }, [sortBy])
 
   useEffect(() => {
     fetch(`https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}`)
@@ -27,13 +34,26 @@ const AllToys = () => {
         <div className="flex gap-3 px-5 py-3">
           <h4>Show Toys: </h4>
 
-          <select value={toysPerPage} onChange={handleToysPerPage}>
+          <select
+            className="px-5 py-1 rounded"
+            value={toysPerPage}
+            onChange={handleToysPerPage}
+          >
             {toysPerPageOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
             ))}
           </select>
+        </div>
+        <div className="flex gap-3 justify-center">
+            <button onClick={() => setSortBy('asc')} className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
+              Sort by Asc
+            </button>
+
+            <button onClick={() => setSortBy('dsc')} className="btn btn-md border-none hover:text-gray-700 hover:bg-[#E0F4DB] bg-gray-700 text-white outline-0">
+              Sort by Dsc
+            </button>
         </div>
       </div>
       <div>
