@@ -25,7 +25,8 @@ const router = createBrowserRouter([
         },
         {
             path: 'all-toys',
-            element: <AllToys></AllToys>
+            element: <AllToys></AllToys>,
+            loader: () => fetch(`https://motor-toys-server.vercel.app/all-toys?limit=20`)
         },
         {
             path: 'my-toys',
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         {
             path: 'register',
             element: <Register></Register>
+        },
+        {
+            path: 'toys/:id',
+
         }
       ]
     },

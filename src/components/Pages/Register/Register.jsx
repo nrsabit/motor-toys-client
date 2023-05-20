@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { BsGoogle } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
   const { signInWithGoogle, signUp, updateUserInfo } = useContext(AuthContext);
+  const navigate = useNavigate()
 
 const handleSignUp = event => {
     event.preventDefault()
@@ -25,6 +26,7 @@ const handleSignUp = event => {
           confirmButtonText: 'Cool'
         });
         form.reset()
+        navigate('/')
     })
     .catch((error) => {
       if(password < 6){
@@ -53,6 +55,7 @@ const handleSignUp = event => {
           icon: 'success',
           confirmButtonText: 'Cool'
         });
+        navigate('/')
       })
       .catch((error) => {
         Swal.fire({

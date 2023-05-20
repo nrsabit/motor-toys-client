@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsGoogle } from "react-icons/bs";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const { signInWithGoogle, logInWithEmail } = useContext(AuthContext);
+  const url = location?.state?.pathname || '/'
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -20,6 +23,7 @@ const Login = () => {
           confirmButtonText: 'Cool'
         });
         form.reset()
+        navigate(url, {replace: true})
       })
       .catch((error) => {
         Swal.fire({
@@ -40,6 +44,7 @@ const Login = () => {
         icon: 'success',
         confirmButtonText: 'Cool'
       });
+      navigate(url, {replace: true})
     })
     .catch((error) => {
       Swal.fire({
