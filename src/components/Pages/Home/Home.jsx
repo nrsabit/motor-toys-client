@@ -3,6 +3,7 @@ import Banner from './Banner';
 import Galary from './Galary';
 import TabsCategory from './TabsCategory';
 import TopToys from './TopToys';
+import About from './About';
 
 const Home = () => {
     document.title = 'MotorToys | Home'
@@ -12,6 +13,7 @@ const Home = () => {
             <Galary></Galary>
             <TabsCategory></TabsCategory>
             <TopToys></TopToys>
+            <About></About>
         </div>
     );
 };

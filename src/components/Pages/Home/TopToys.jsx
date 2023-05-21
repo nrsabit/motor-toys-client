@@ -2,7 +2,7 @@ import React from "react";
 
 const TopToys = () => {
   return (
-    <div className="my-16 p-12 md:py-20 bg-base-100 rounded">
+    <div className="p-12 md:py-20 bg-base-100 rounded">
       <div className="max-w-lg mx-auto">
         <h1 className="mb-5 text-3xl md:text-5xl text-center font-bold text-gray-900">
           Our Top Rated Toys
