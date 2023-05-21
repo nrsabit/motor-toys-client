@@ -56,6 +56,9 @@ const Galary = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map((image) => (
           <div
+          data-aos="fade-right"
+          data-aos-offset="200"
+          data-aos-duration="1000"
             key={image.id}
             className="relative flex justify-center items-center"
           >
