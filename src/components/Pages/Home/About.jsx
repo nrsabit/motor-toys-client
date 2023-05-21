@@ -9,7 +9,7 @@ const About = () => {
       className="hero bg-[#E0F4DB] p-12 md:p-20 rounded mb-16"
     >
       <div
-        data-aos="fade-right"
+        data-aos="flip-up"
         data-aos-offset="200"
         data-aos-duration="1500"
         className="hero-content flex-col lg:flex-row-reverse gap-8"
@@ -32,7 +32,7 @@ const About = () => {
           </p>
         </div>
         <div
-          data-aos="fade-left"
+          data-aos="fade-down"
           data-aos-offset="200"
           data-aos-duration="1500"
           className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"

@@ -15,7 +15,7 @@ const TopToys = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           <div
-            data-aos="fade-right"
+            data-aos="fade-up"
             data-aos-offset="200"
             data-aos-duration="1000"
             className="bg-[#E0F4DB] overflow-hidden shadow rounded-lg"
@@ -96,7 +96,7 @@ const TopToys = () => {
             </div>
           </div>
           <div
-            data-aos="fade-left"
+            data-aos="fade-down"
             data-aos-offset="200"
             data-aos-duration="1000"
             className="bg-base-200 overflow-hidden shadow rounded-lg"
