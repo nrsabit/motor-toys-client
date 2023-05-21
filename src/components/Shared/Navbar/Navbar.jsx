@@ -11,7 +11,6 @@ import { Tooltip } from "react-tippy";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  console.log(user);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

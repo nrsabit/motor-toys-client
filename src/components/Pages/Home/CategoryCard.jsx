@@ -4,7 +4,6 @@ import {  useNavigate } from "react-router-dom";
 const CategoryCard = ({ toy }) => {
   const navigate = useNavigate();
   const { picture, name, price, rating, _id } = toy;
-  console.log(location)
   return (
     <div className="bg-white overflow-hidden shadow rounded-lg">
       <img src={picture} alt="Card 1" className="w-full h-48 object-cover" />
