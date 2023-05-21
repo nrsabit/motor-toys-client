@@ -2,16 +2,45 @@ import React, { useContext, useEffect, useState } from "react";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
   document.title = "MotorToys | My Toys";
   const [toys, setToys] = useState([]);
   const { user } = useContext(AuthContext);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://motor-toys-server.vercel.app/delete-toy/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remaining = toys.filter(toy => toy._id !== id)
+              setToys(remaining)
+            }
+          });
+      }
+    });
+  };
+
   useEffect(() => {
     fetch(`https://motor-toys-server.vercel.app/my-toys?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, [user]);
+
   return (
     <div className="my-16 md:mt-8 p-12 max-w-7xl mx-auto md:px-36 md:pb-12">
       <h1 className="mb-10 text-3xl md:text-5xl text-center font-bold text-gray-900">
@@ -93,7 +122,9 @@ const MyToys = () => {
                   <td className="px-6 text-center py-4 whitespace-nowrap">
                     <div className="flex justify-center items-center gap-3">
                       <BiEdit className="text-green-500 w-6 h-8"></BiEdit>
-                      <BsFillTrash3Fill className="text-red-600 w-6 h-6"></BsFillTrash3Fill>
+                      <button onClick={() => handleDelete(toy._id)}>
+                        <BsFillTrash3Fill className="text-red-600 w-6 h-6"></BsFillTrash3Fill>
+                      </button>
                     </div>
                   </td>
                 </tr>
