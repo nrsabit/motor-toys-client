@@ -7,8 +7,8 @@ const ActiveLInk = ({ to, children, customClass }) => {
       to={to}
       className={({ isActive }) =>
         isActive
-          ? `bg-gray-300 text-white px-3 py-2 rounded-md text-sm font-medium ${customClass}`
-          : `${customClass} text-gray-700 hover:bg-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium`
+          ? `bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium ${customClass}`
+          : `${customClass} text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium`
       }
     >{children}</NavLink>
   );

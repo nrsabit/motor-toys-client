@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const MyToys = () => {
   document.title = "MotorToys | My Toys";
+  const [sortBy, setSortBy] = useState(null)
   const [toys, setToys] = useState([]);
   const [editToy, setEditToy] = useState({});
   const { user } = useContext(AuthContext);
@@ -74,6 +75,14 @@ const MyToys = () => {
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, [user]);
+
+  useEffect(() => {
+    fetch(
+      `https://motor-toys-server.vercel.app/my-toys?email=${user?.email}&sort=${sortBy}`
+    )
+      .then((res) => res.json())
+      .then((data) => setToys(data));
+  }, [sortBy]);
 
   return (
     <div className="my-16 md:mt-8 p-12 max-w-7xl mx-auto md:px-36 md:pb-12">

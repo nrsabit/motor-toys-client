@@ -5,9 +5,13 @@ import { BiMenuAltRight, BiWindowClose } from "react-icons/bi";
 import ActiveLInk from "./ActiveLInk";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
+import "tippy.js/dist/tippy.css";
+import { Tooltip } from "react-tippy";
+
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  console.log(user);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -77,13 +81,25 @@ const Navbar = () => {
             )}
             <div className={`ml-2 ${user ? "" : "hidden"}`}>
               {user?.photoURL ? (
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src={user.photoURL}
-                  alt="Profile"
-                />
+                <Tooltip
+                  title={user ? user.displayName : ""}
+                  position="right"
+                  trigger="mouseenter"
+                >
+                  <img
+                    className="h-8 w-8 rounded-full cursor-pointer"
+                    src={user ? user.photoURL : ""}
+                    alt="Profile"
+                  />
+                </Tooltip>
               ) : (
-                <FaUserCircle></FaUserCircle>
+                <Tooltip
+                  title={user ? user.displayName : ""}
+                  position="right"
+                  trigger="mouseenter"
+                >
+                  <FaUserCircle className="h-8 w-8 rounded-full cursor-pointer"></FaUserCircle>
+                </Tooltip>
               )}
             </div>
           </div>
@@ -118,13 +134,25 @@ const Navbar = () => {
             <div className="flex items-center">
               <div className={`ml-2 ${user ? "" : "hidden"}`}>
                 {user?.photoURL ? (
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src={user.photoURL}
-                    alt="Profile"
-                  />
+                  <Tooltip
+                    title={user ? user.displayName : ""}
+                    position="right"
+                    trigger="mouseenter"
+                  >
+                    <img
+                      className="h-8 w-8 rounded-full cursor-pointer"
+                      src={user ? user.photoURL : ""}
+                      alt="Profile"
+                    />
+                  </Tooltip>
                 ) : (
-                  <FaUserCircle></FaUserCircle>
+                  <Tooltip
+                    title={user ? user.displayName : ""}
+                    position="right"
+                    trigger="mouseenter"
+                  >
+                    <FaUserCircle className="h-8 w-8 rounded-full cursor-pointer"></FaUserCircle>
+                  </Tooltip>
                 )}
               </div>
               <div className="ml-2">

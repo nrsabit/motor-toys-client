@@ -49,7 +49,6 @@ const AllToys = () => {
   };
 
   useEffect(() => {
-    console.log(location)
     fetch(
       `https://motor-toys-server.vercel.app/all-toys?limit=${toysPerPage}&sort=${sortBy}`
     )
