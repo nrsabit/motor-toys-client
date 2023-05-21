@@ -8,7 +8,7 @@ const Login = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const { signInWithGoogle, logInWithEmail } = useContext(AuthContext);
-  const url = location?.state?.pathname || '/'
+  const url = location?.state?.from?.pathname || '/'
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;

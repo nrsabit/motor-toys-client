@@ -16,7 +16,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   const googleAuthProvider = new GoogleAuthProvider();
 
   const signUp = (email, password) => {
@@ -47,12 +47,11 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setLoader(false);
       if (user) {
         setUser(user);
-        setLoader(false);
       } else {
         setUser(null);
-        setLoader(false);
       }
     });
     return () => {
