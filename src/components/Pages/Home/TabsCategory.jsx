@@ -29,7 +29,7 @@ const TabsCategory = () => {
       data-aos="fade-up"
       data-aos-offset="200"
       data-aos-duration="1000"
-      className="my-16 p-12 md:px-36 md:py-20 bg-base-200 rounded"
+      className="my-16 p-12 md:px-36 md:py-20 bg-[#E0F4DB] rounded"
     >
       <div className="max-w-lg mx-auto">
         <h1 className="mb-5 text-3xl md:text-5xl text-center font-bold text-gray-900">
