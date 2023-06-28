@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
     document.title = 'MotorToys | 404'
   return (
-    <div className="my-8 md:mt-8 p-12 max-w-7xl mx-auto md:px-36 bg-base-200 md:flex md:flex-col md:items-center md:justify-center">
+    <div className="min-h-screen w-full md:px-36 bg-base-200 md:flex md:flex-col md:items-center md:justify-center">
       <h1 className="mb-10 text-3xl md:text-5xl text-center font-bold text-gray-900">
         Page Not Found
       </h1>

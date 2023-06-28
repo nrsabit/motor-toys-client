@@ -21,7 +21,7 @@ const TopToys = () => {
             className="bg-[#E0F4DB] overflow-hidden shadow rounded-lg"
           >
             <img
-              src="https://i.ibb.co/c1vN3rQ/race-car.jpg"
+              src="https://i.ibb.co/px3cZZT/race-car.jpg"
               alt="Card 1"
               className="w-full h-48 object-cover"
             />
@@ -48,7 +48,7 @@ const TopToys = () => {
             className="bg-base-200 overflow-hidden shadow rounded-lg"
           >
             <img
-              src="https://i.ibb.co/Xp2fD4f/atv-quad-bike.jpg"
+              src="https://i.ibb.co/LQHVjzg/atv-quad-bike.jpg"
               alt="Card 1"
               className="w-full h-48 object-cover"
             />
@@ -75,7 +75,7 @@ const TopToys = () => {
             className="bg-[#E0F4DB] overflow-hidden shadow rounded-lg"
           >
             <img
-              src="https://i.ibb.co/C93dPVn/red-race-bike.jpg"
+              src="https://i.ibb.co/MSYHDYY/red-race-bike.jpg"
               alt="Card 1"
               className="w-full h-48 object-cover"
             />
@@ -102,7 +102,7 @@ const TopToys = () => {
             className="bg-base-200 overflow-hidden shadow rounded-lg"
           >
             <img
-              src="https://i.ibb.co/kJ4k9Fm/monster-truck.jpg"
+              src="https://i.ibb.co/hggJQRV/monster-truck.jpg"
               alt="Card 1"
               className="w-full h-48 object-cover"
             />

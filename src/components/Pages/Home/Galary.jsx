@@ -4,42 +4,42 @@ const Galary = () => {
   const images = [
     {
       id: 1,
-      src: "https://i.ibb.co/Xp2fD4f/atv-quad-bike.jpg",
+      src: "https://i.ibb.co/LQHVjzg/atv-quad-bike.jpg",
       alt: "ATV Quad Bike",
     },
     {
       id: 2,
-      src: "https://i.ibb.co/Qjq0B5T/dirt-bike.jpg",
+      src: "https://i.ibb.co/t3yrwZF/dirt-bike.jpg",
       alt: "Dirt Bike",
     },
     {
       id: 3,
-      src: "https://i.ibb.co/9TBqMks/moto-racer.jpg",
+      src: "https://i.ibb.co/t82vfp8/moto-racer.jpg",
       alt: "Moto Racer",
     },
     {
       id: 4,
-      src: "https://i.ibb.co/fGstkWW/police-motorcycle.jpg",
+      src: "https://i.ibb.co/8x5zkm0/police-motorcycle.jpg",
       alt: "Police Motorcycle",
     },
     {
       id: 5,
-      src: "https://i.ibb.co/kJ4k9Fm/monster-truck.jpg",
+      src: "https://i.ibb.co/hggJQRV/monster-truck.jpg",
       alt: "Monster Truck",
     },
     {
       id: 6,
-      src: "https://i.ibb.co/pr2dmJM/blue-police-car.jpg",
+      src: "https://i.ibb.co/zZghRqN/blue-police-car.jpg",
       alt: "Blue Police Car",
     },
     {
       id: 7,
-      src: "https://i.ibb.co/zXgnqby/motorcycle.jpg",
+      src: "https://i.ibb.co/kQR4nYF/motorcycle.jpg",
       alt: "Motorcycle",
     },
     {
       id: 8,
-      src: "https://i.ibb.co/t8RHBRf/police-car.jpg",
+      src: "https://i.ibb.co/QQY11zs/police-car.jpg",
       alt: "Black Police Car",
     },
   ];
